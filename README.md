@@ -5,3 +5,9 @@ In this project, I performed data cleaning on a real-world dataset involving glo
 ## Dataset Used 
 - <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/layoffs.csv">Tech-Layoffs-Dataset</a>
 
+## 🛠️ Tools Used
+MySQL Workbench
+
+SQL
+
+GUI-based Data Import Wizard
