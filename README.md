@@ -34,7 +34,7 @@ In this project, I performed data cleaning on a real-world dataset involving glo
  ##  📌 Project Workflow
 - STEP 1: Create Staging Table
   
-CREATE TABLE layoffs_staging LIKE layoffs;
+### CREATE TABLE layoffs_staging LIKE layoffs;
 
 INSERT INTO layoffs_staging SELECT * FROM layoffs;
 
