@@ -35,9 +35,6 @@ In this project, I performed data cleaning on a real-world dataset involving glo
 ### SQL Code
 
 ```sql
--- SQL Data Cleaning Project - Tech Layoffs Dataset
-
--- Downloaded this dataset from The Analyst Builder GitHub (under CC rights)
 
 -- First, I created a new database called world_layoffs using the GUI:
 -- Click on “Create New Schema”, renamed it to world_layoffs, clicked Apply (twice), then Finish
