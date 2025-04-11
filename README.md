@@ -32,26 +32,13 @@ In this project, I performed data cleaning on a real-world dataset involving glo
 - Funds raised
 
  ##  📌 Project Workflow
-Key Cleaning Steps
-1. Database Setup & Data Import
-sql
--- Created database
-CREATE SCHEMA `world_layoffs`;
-
--- Imported raw data using GUI Table Data Import Wizard
--- Preserved original data types during initial import
-2. Staging Environment Setup
-sql
--- Created staging tables to preserve raw data
+- STEP 1: Create Staging Table
 CREATE TABLE layoffs_staging LIKE layoffs;
 INSERT INTO layoffs_staging SELECT * FROM layoffs;
 
--- Added row number for duplicate identification
-ALTER TABLE layoffs_staging2 ADD COLUMN row_num INT;
-3. Duplicate Removal
-Technique Used: Window functions + CTE
+- STEP 2: Add Row Number for Duplicate Identification
+ALTER TABLE layoffs_staging ADD COLUMN row_num INT;
 
-sql
 WITH duplicate_cte AS (
   SELECT *,
   ROW_NUMBER() OVER(
@@ -59,72 +46,50 @@ WITH duplicate_cte AS (
     total_laid_off, percentage_laid_off, 
     date, stage, country, funds_raised_millions
   ) AS row_num
-  FROM layoffs_staging2
+  FROM layoffs_staging
 )
-DELETE FROM layoffs_staging2 WHERE row_num > 1;
-Result: Removed 12 duplicate records
+DELETE FROM layoffs_staging WHERE row_num > 1;
 
-4. Data Standardization
-A. Text Cleaning
-
-sql
--- Trim whitespace
-UPDATE layoffs_staging2 
+-- STEP 3: Standardize Text Data
+-- Trim whitespace from company names
+UPDATE layoffs_staging 
 SET company = TRIM(company);
 
--- Industry normalization
-UPDATE layoffs_staging2
+-- Normalize industry names (e.g., Cryptocurrency → Crypto)
+UPDATE layoffs_staging
 SET industry = 'Crypto' 
 WHERE industry LIKE 'Crypto%';
 
--- Special character handling
-UPDATE layoffs_staging2
+-- Fix special characters in location column
+UPDATE layoffs_staging
 SET location = 'Düsseldorf' 
 WHERE location LIKE 'DÃ¼sseldorf%';
-B. Date Conversion
 
-sql
--- Convert text to DATE type
-UPDATE layoffs_staging2
+-- STEP 4: Convert Date Format and Update Data Type
+UPDATE layoffs_staging
 SET date = STR_TO_DATE(date, '%m/%d/%Y');
 
-ALTER TABLE layoffs_staging2 
+ALTER TABLE layoffs_staging 
 MODIFY COLUMN date DATE;
-5. Null Value Treatment
-A. Blank → NULL Conversion
 
-sql
-UPDATE layoffs_staging2
+-- STEP 5: Handle Null Values
+-- Replace blanks with NULL in the industry column
+UPDATE layoffs_staging
 SET industry = NULL 
 WHERE industry = '';
-B. Self-Join Imputation
 
-sql
-UPDATE layoffs_staging2 t1
-JOIN layoffs_staging2 t2
+-- Impute missing values using self-join (e.g., fill NULL industries)
+UPDATE layoffs_staging t1
+JOIN layoffs_staging t2
   ON t1.company = t2.company
 SET t1.industry = t2.industry
 WHERE t1.industry IS NULL 
   AND t2.industry IS NOT NULL;
-C. Irrelevant Data Removal
 
-sql
-DELETE FROM layoffs_staging2
+-- STEP 6: Remove Irrelevant Data
+DELETE FROM layoffs_staging
 WHERE total_laid_off IS NULL 
   AND percentage_laid_off IS NULL;
-Final Output
-Cleaned Dataset Metrics:
 
-Removed duplicates: 12 records
-
-Standardized industries: 3 categories corrected
-
-Fixed date formats: 100% conversion success
-
-Null values reduced: 87.5% decrease
-
-Schema Optimization:
-
-sql
-ALTER TABLE layoffs_staging2
-DROP COLUMN row_num;
+-- Drop unnecessary columns (e.g., row_num)
+ALTER TABLE layoffs_staging DROP COLUMN row_num;
