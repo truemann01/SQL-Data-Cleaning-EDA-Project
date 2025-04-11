@@ -199,3 +199,22 @@ WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
 ALTER TABLE layoffs_staging2
 DROP COLUMN row_num;
 ``` 
+## Final Result 
+
+- <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/Final%20result.csv">layoffs_staging2</a>
+- <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/2025-04-11%20(7).png">snapshot</a>
+
+This dataset is now cleaned and ready for analysis and visualisation.
+
+## Key Learnings
+- Staging Environments: Essential for preserving raw data integrity
+
+- Window Functions: Powerful for complex duplicate detection
+
+- Transactional Updates: Always test UPDATE/DELETE with SELECT first
+
+- Data Type Validation: Crucial for temporal analysis readiness
+
+## 🚀 Thanks for reading!
+Want to connect or collaborate? Let’s chat on <a href="https://www.linkedin.com/in/anderson-igbah?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">LinkedIn</a> 
+
