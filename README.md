@@ -75,7 +75,7 @@ Dropped the temporary row_num column as it was no longer needed.
 
  
 ### SQL Code
-<pre>
+
 ```sql
 
 -- First, I created a new database called world_layoffs using the GUI:
@@ -198,5 +198,4 @@ WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
 -- Dropping the row_num column since it’s no longer needed
 ALTER TABLE layoffs_staging2
 DROP COLUMN row_num;
-``` </pre>
-
+``` 
