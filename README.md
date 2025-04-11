@@ -13,7 +13,7 @@ In this project, I performed data cleaning on a real-world dataset involving glo
 - GUI-based Data Import Wizard
 
   ## 📁 Dataset
-# The dataset contains records of company layoffs globally from 2020 to 2023, including:
+ The dataset contains records of company layoffs globally from 2020 to 2023, including:
 
 - Company name
 
@@ -33,9 +33,9 @@ In this project, I performed data cleaning on a real-world dataset involving glo
 
  ##  📌 Project Workflow
 
--- SQL Data Cleaning Script for Tech Layoffs Dataset
+# SQL Data Cleaning Script for Tech Layoffs Dataset
 
--- STEP 1: Create new schema
+# STEP 1: Create new schema
 -- (Using MySQL Workbench GUI: Create Schema > Name it 'world_layoffs' > Apply)
 
 -- STEP 2: Import CSV into a new table named 'layoffs' under 'world_layoffs' schema
