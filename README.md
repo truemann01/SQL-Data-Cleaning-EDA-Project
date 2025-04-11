@@ -32,6 +32,48 @@ In this project, I performed data cleaning on a real-world dataset involving glo
 - Funds raised
 
  ##  📌 Project Workflow
+
+🔹 1. Database Setup
+Created a new schema in MySQL called world_layoffs.
+
+Used the GUI import wizard to load the raw CSV file into a new table called layoffs.
+
+🔹 2. Create Staging Tables
+Created layoffs_staging as a working copy of the original data.
+
+Created a second table layoffs_staging2 for refined cleaning to preserve each step and avoid modifying the raw data.
+
+🔹 3. Remove Duplicates
+Added a row_number() column using a PARTITION BY clause to detect duplicates.
+
+Created a Common Table Expression (CTE) to identify duplicate records.
+
+Verified and deleted duplicate rows.
+
+🔹 4. Standardize Text Fields
+Trimmed unnecessary white spaces from the company column.
+
+Fixed inconsistent industry names, e.g., "cryptocurrency" to "crypto".
+
+Cleaned special characters in the location field (e.g., "DÃ¼sseldorf" to "Düsseldorf").
+
+Removed trailing punctuation from country names like “United States.”
+
+🔹 5. Date Formatting
+Converted the date column from TEXT to DATE using STR_TO_DATE() and ALTER TABLE.
+
+🔹 6. Handling Null and Blank Values
+Replaced blank strings with NULL for accurate analysis.
+
+Used self-joins to populate missing industry values by matching records with the same company name that had non-null entries.
+
+🔹 7. Remove Irrelevant Data
+Deleted rows where both total_laid_off and percentage_laid_off were null.
+
+Dropped the temporary row_num column as it was no longer needed.
+
+
+ 
 ### SQL Code
 
 ```sql
@@ -68,7 +110,7 @@ SELECT *,
        ) AS row_num
 FROM layoffs_staging;
 
--- Created a CTE to help find and filter duplicates
+-- Use a CTE to isolate duplicate rows
 WITH duplicate_cte AS (
   SELECT *,
          ROW_NUMBER() OVER (
