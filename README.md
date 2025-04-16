@@ -1,6 +1,16 @@
 # SQL-Data-Cleaning-Project "Tech-Layoffs-Dataset"
 ## Project Overview
-In this project, I performed data cleaning on a real-world dataset involving global tech layoffs. The dataset was sourced from The Analyst Builder GitHub and is licensed under Creative Commons. The goal was to clean and prepare the data for analysis using SQL in MySQL Workbench.
+In this project, I performed data cleaning on a real-world dataset tracking global tech layoffs from 2020–2023. The dataset, originally sourced from The Analyst Builder GitHub, was cleaned and prepared using SQL in MySQL Workbench.
+
+This was a hands-on demonstration of how to handle:
+
+- messy real-world data,
+
+- duplicates,
+
+- missing values,
+
+- and inconsistent formatting — all within SQL.
 
 ## Dataset Used 
 - <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/layoffs.csv">Tech-Layoffs-Dataset</a>
@@ -12,24 +22,22 @@ In this project, I performed data cleaning on a real-world dataset involving glo
 
 - GUI-based Data Import Wizard
 
-  ## 📁 Dataset
- The dataset contains records of company layoffs globally from 2020 to 2023, including:
+  ## 📁 Dataset Summary
+- Source: Tech Layoffs Dataset
+- License: Creative Commons
+- Years Covered: 2020 - 2023
 
-- Company name
+Key fields include:
 
-- Location
-
-- Industry
-
-- Number of employees laid off
-
-- Date
-
-- Stage of company
-
-- Country
-
-- Funds raised
+- company
+- location
+- industry
+- total_laid_off
+- percentage_laid_off
+- date
+- stage
+- country
+- funds_raised_millions
 
  ##  📌 Project Workflow
 
@@ -204,7 +212,10 @@ DROP COLUMN row_num;
 - <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/Final%20result.csv">layoffs_staging2</a>
 - <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/2025-04-11%20(7).png">snapshot</a>
 
-This dataset is now cleaned and ready for analysis and visualisation.
+This dataset is now cleaned and ready for: 
+- Analysis
+- Visualisation
+- Reporting
 
 ## Key Learnings
 - Staging Environments: Essential for preserving raw data integrity
