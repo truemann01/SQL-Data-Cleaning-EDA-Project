@@ -13,7 +13,7 @@ This was a hands-on demonstration of how to handle:
 - and inconsistent formatting — all within SQL.
 
 ## Dataset Used 
-- <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/layoffs.csv">Tech-Layoffs-Dataset</a>
+- <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/Data/layoffs.csv">Tech-Layoffs-Dataset</a>
 
 ## 🛠️ Tools Used
 - MySQL Workbench
