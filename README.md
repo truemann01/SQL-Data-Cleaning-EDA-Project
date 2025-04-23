@@ -1,4 +1,4 @@
-# SQL-Data-Cleaning-Project "Tech-Layoffs-Dataset"
+# SQL-Data-Cleaning-Project & EDA "Tech-Layoffs-Dataset"
 ## Project Overview
 In this project, I performed data cleaning on a real-world dataset tracking global tech layoffs from 2020–2023. The dataset, originally sourced from The Analyst Builder GitHub, was cleaned and prepared using SQL in MySQL Workbench.
 
