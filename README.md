@@ -212,8 +212,83 @@ DROP COLUMN row_num;
 - <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/Data/Final%20result.csv">layoffs_staging2</a>
 - <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/Snapshots/2025-04-11%20(7).png">snapshot</a>
 
-This dataset is now cleaned and ready for: 
-- Analysis
+
+## 📊 Part 2: Exploratory Data Analysis (EDA)
+
+Using SQL queries, I explored patterns and trends in the cleaned layoffs data:
+
+- Top companies by number of layoffs
+- Trends across industries and countries
+- Monthly and yearly layoff patterns
+- Companies that laid off 100% of staff
+
+## SQL script
+
+```SQL
+-- Description: SQL queries to explore trends and patterns in global tech layoffs.
+
+USE world_layoffs;
+
+-- 📌 1. Top Companies with the Most Layoffs
+SELECT company, SUM(total_laid_off) AS total_laid_off
+FROM layoffs_staging2
+GROUP BY company
+ORDER BY total_laid_off DESC
+LIMIT 10;
+
+-- 📌 2. Total Layoffs Per Industry
+SELECT industry, SUM(total_laid_off) AS total_laid_off
+FROM layoffs_staging2
+GROUP BY industry
+ORDER BY total_laid_off DESC;
+
+-- 📌 3. Layoffs by Country
+SELECT country, SUM(total_laid_off) AS total_laid_off
+FROM layoffs_staging2
+GROUP BY country
+ORDER BY total_laid_off DESC;
+
+-- 📌 4. Yearly Layoffs Trend
+SELECT YEAR(`date`) AS year, SUM(total_laid_off) AS total_laid_off
+FROM layoffs_staging2
+GROUP BY YEAR(`date`)
+ORDER BY year;
+
+-- 📌 5. Monthly Layoffs Trend
+SELECT DATE_FORMAT(`date`, '%Y-%m') AS month, SUM(total_laid_off) AS total_laid_off
+FROM layoffs_staging2
+GROUP BY month
+ORDER BY month;
+
+-- 📌 6. Percentage Layoffs by Stage of Company
+SELECT stage, COUNT(*) AS count, SUM(percentage_laid_off) AS total_percent
+FROM layoffs_staging2
+GROUP BY stage
+ORDER BY total_percent DESC;
+
+-- 📌 7. Companies with 100% Layoffs
+SELECT company, `date`, total_laid_off, percentage_laid_off
+FROM layoffs_staging2
+WHERE percentage_laid_off = '100%';
+
+-- 📌 8. Timeline of Layoffs for Top 5 Companies
+SELECT company, DATE_FORMAT(`date`, '%Y-%m') AS month, SUM(total_laid_off) AS layoffs
+FROM layoffs_staging2
+WHERE company IN (
+  SELECT company
+  FROM layoffs_staging2
+  GROUP BY company
+  ORDER BY SUM(total_laid_off) DESC
+  LIMIT 5
+)
+GROUP BY company, month
+ORDER BY month, company;
+
+```
+
+
+This dataset is now cleaned, Analysed and ready for: 
+- Further Analysis can be done (I'm open for collaboration)
 - Visualisation
 - Reporting
 
