@@ -209,8 +209,8 @@ DROP COLUMN row_num;
 ``` 
 ## Final Result 
 
-- <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/Final%20result.csv">layoffs_staging2</a>
-- <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/2025-04-11%20(7).png">snapshot</a>
+- <a href="https://github.com/truemann01/SQL-Data-Cleaning-Project/blob/main/Data/Final%20result.csv">layoffs_staging2</a>
+- <a href="">snapshot</a>
 
 This dataset is now cleaned and ready for: 
 - Analysis
